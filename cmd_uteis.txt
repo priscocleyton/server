@@ -1,0 +1,61 @@
+
+
+
+### Regra de negócio
+## Ad
+
+id 
+gameId
+name
+yearsPlaying
+discord
+weekDays
+hourStart
+hourEnd
+useVoiceChannel
+createdAt
+
+1:30 -> 90 min
+
+179,89 -> 17989
+
+## criar projeto
+npm init -y 
+    Explicação:  -y serve pra dizer que estou colocando sim pra todas as perguntas que iria perguntar no momento do init
+
+
+## instalar express
+npm install express
+
+
+## instalar typescript
+npm i typescript -D
+npx tsc --init
+
+    Importante: lembrar de ir no arquivo tsconfig.json e em module colocar ES2020. vai ficar :     "module": "ES2020",   
+    depois rodar 'npm run build'.
+    No "rootDir": colocar "./src"
+    No "outDir": colocar "./build",      
+    descomentar "moduleResolution": "node",  
+
+## instalar tipagem do express
+npm install @types/express -D
+
+
+## instalar biblioteca que permite reinicar sozinho (i like that)
+npm i ts-node-dev -D
+
+#instalar orm prima
+npm i prisma -D
+
+npx prisma init --datasource-provider SQLite
+
+## criando migrate
+npx prisma migrate dev   
+    Criar versionamento do banco de dados / tabelas
+
+## cmd util para usar para navegar no banco de dados pelo navegador
+npx prisma studio
+
+
+minuto -41:45
