@@ -58,4 +58,12 @@ npx prisma migrate dev
 npx prisma studio
 
 
-minuto -41:45
+## para acessar o banco de dados
+npm i @prisma/client
+
+## 
+npx prisma generate ou npx prisma migrate dev  
+
+
+
+PAREI NO -4:49
