@@ -1,23 +1,19 @@
+COMO UTILIZAR A API
 
+1 PASSO:
 
+//Para iniciar o servidor use:
+npm run dev
 
-### Regra de negócio
-## Ad
+2 PASSO:
 
-id 
-gameId
-name
-yearsPlaying
-discord
-weekDays
-hourStart
-hourEnd
-useVoiceChannel
-createdAt
+//Abrir no google
+## cmd util para usar para navegar no banco de dados pelo navegador
+npx prisma studio
 
-1:30 -> 90 min
+________________________________________________
 
-179,89 -> 17989
+PASSOS USADOS PARA DESENVOLVER ESTA API:
 
 ## criar projeto
 npm init -y 
@@ -54,16 +50,22 @@ npx prisma init --datasource-provider SQLite
 npx prisma migrate dev   
     Criar versionamento do banco de dados / tabelas
 
-## cmd util para usar para navegar no banco de dados pelo navegador
-npx prisma studio
+
+
+
 
 
 ## para acessar o banco de dados
 npm i @prisma/client
 
-## 
-npx prisma generate ou npx prisma migrate dev  
 
-
+ 
 
 PAREI NO -4:49
+
+_______________________________________
+
+PARA CRIAR UMA NOVA TABELA NA API:
+
+## Cria uma migrate (Tabela de dados)
+npx prisma migrate dev 
