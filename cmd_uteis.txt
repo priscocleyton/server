@@ -13,6 +13,13 @@ npx prisma studio
 
 ________________________________________________
 
+PARA CRIAR UMA NOVA TABELA NA API:
+
+## Cria uma migrate (Tabela de dados)
+npx prisma migrate dev 
+
+________________________________________________
+
 PASSOS USADOS PARA DESENVOLVER ESTA API:
 
 ## criar projeto
@@ -63,9 +70,3 @@ npm i @prisma/client
 
 PAREI NO -4:49
 
-_______________________________________
-
-PARA CRIAR UMA NOVA TABELA NA API:
-
-## Cria uma migrate (Tabela de dados)
-npx prisma migrate dev 

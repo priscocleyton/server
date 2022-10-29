@@ -38,6 +38,12 @@ model RevenuesTable{
   bills String
 }
 
+model Banks{
+  id String @id @default(uuid())
+  bank String 
+}
+
+
 model ExpensesTable{
   id String @id @default(uuid())
   categoryOfExpenses String
@@ -70,3 +76,9 @@ model Ad {
 
   game Game @relation(fields: [gameId], references: [id])
 }
+
+model Payment {
+  id String @id @default(uuid())
+  description String 
+}
+
