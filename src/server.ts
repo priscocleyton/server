@@ -248,7 +248,7 @@ app.post('/payment', async (request, response) => {
     const body = request.body;
 
     if (!body.payment) {
-        return response.status(400).json({ "Error": "Campo 'payment' não encontrado" })
+        return response.status(400).json({ "Error": "Campo 'paynment' não encontrado" })
     }
 
     const payment = await prisma.payment.create({
