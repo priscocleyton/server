@@ -259,4 +259,24 @@ app.post('/payment', async (request, response) => {
     return response.status(201).json("Salvo com sucesso!")
 })
 
+//Rota Users
+app.get('/users', async (req, res) => {
+    const users = await prisma.users.findMany()
+
+    return res.json(users)
+})
+
+app.post('/users', async (request, response) => {   
+    const body = request.body;
+
+    const users = await prisma.users.create({
+        data: {
+            email: body.email,
+            password: body.password,
+            role: body.role          
+        }
+    })
+    return response.status(201).json("Salvo com sucesso!")
+})
+
 app.listen(3333)
