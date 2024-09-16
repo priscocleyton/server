@@ -1,8 +1,10 @@
 import express from "express";
 import { PrismaClient } from '@prisma/client'
 import { convertHoursStringToMinutes } from "./utils/convert-hours-string-to-minutes";
+import cors from "cors";
 
 const app = express()
+app.use(cors())
 
 app.use(express.json())
 
@@ -100,11 +102,181 @@ app.get('/ads/:id/discord', async (request , response) => {
     })
 })
 
+//TABELAS DO PRISCO
 
+// Rota Transaction
 app.get('/transactions', async (req, res) => {
     const transactions = await prisma.transaction.findMany()
 
     return res.json(transactions)
+})
+
+app.post('/transactions', async (request, response) => {   
+    const body = request.body;
+
+    if (!body.descricao) {
+        return response.status(400).json({ "Error": "Campo descrição não encontrado" })
+    }
+    if (!body.saldo) {
+        return response.status(400).json({ "Error": "Campo saldo não encontrado" })
+    }
+
+    const transaction = await prisma.transaction.create({
+        data: {
+            descricao: body.descricao,
+            saldo: body.saldo,
+            tipo: body.tipo,
+            dataCriacao:  body.dataCriacao
+        }
+    })
+
+    return response.status(201).json("Salvo com sucesso!")
+})
+
+//TABELAS DO HENRIQUE
+
+//Rota Revenues
+app.get('/revenues', async (req, res) => {
+    const revenues = await prisma.revenuesTable.findMany()
+
+    return res.json(revenues)
+})
+
+app.post('/revenues', async (request, response) => {   
+    const body = request.body;
+
+    if (!body.categoryOfRevenue) {
+        return response.status(400).json({ "Error": "Campo descrição não encontrado" })
+    }
+
+    const revenues = await prisma.revenuesTable.create({
+        data: {
+            categoryOfRevenue: body.categoryOfRevenue,
+            bills: body.bills,            
+        }
+    })
+
+    return response.status(201).json("Salvo com sucesso!")
+})
+
+//Rota Expenses
+app.get('/expenses', async (req, res) => {
+    const expenses = await prisma.expensesTable.findMany()
+
+    return res.json(expenses)
+})
+
+app.post('/expenses', async (request, response) => {   
+    const body = request.body;
+
+    if (!body.categoryOfExpenses) {
+        return response.status(400).json({ "Error": "Campo descrição não encontrado" })
+    }
+
+    const expenses = await prisma.expensesTable.create({
+        data: {
+            categoryOfExpenses: body.categoryOfExpenses,
+            bills: body.bills,            
+        }
+    })
+
+    return response.status(201).json("Salvo com sucesso!")
+})
+
+//Rota Banks
+app.get('/banks', async (req, res) => {
+    const banks = await prisma.banks.findMany()
+
+    return res.json(banks)
+})
+
+app.post('/banks', async (request, response) => {   
+    const body = request.body;
+
+    if (!body.bank) {
+        return response.status(400).json({ "Error": "Campo descrição não encontrado" })
+    }
+
+    const banks = await prisma.banks.create({
+        data: {
+            bank: body.bank,                       
+        }
+    })
+    return response.status(201).json("Salvo com sucesso!")
+})
+
+
+//Rota TransactionsTable
+app.get('/newtransaction', async (req, res) => {
+    const newtransaction = await prisma.transactionsTable.findMany()
+
+    return res.json(newtransaction)
+})
+
+app.post('/newtransaction', async (request, response) => {   
+    const body = request.body;
+
+    if (!body.category) {
+        return response.status(400).json({ "Error": "Campo descrição não encontrado" })
+    }
+
+    const newtransaction = await prisma.transactionsTable.create({
+        data: {            
+            type: body.type, 
+            date: body.date,
+            category: body.category,
+            bills: body.bills,
+            payment: body.payment,
+            bank: body.bank,
+            value: body.value,
+            history: body.history 
+        }
+    })
+
+    return response.status(201).json("Salvo com sucesso!")
+})
+
+
+//Rota PaymentMethod
+app.get('/payment', async (req, res) => {
+    const payment = await prisma.payment.findMany()
+
+    return res.json(payment)
+})
+
+app.post('/payment', async (request, response) => {   
+    const body = request.body;
+
+    if (!body.payment) {
+        return response.status(400).json({ "Error": "Campo 'paynment' não encontrado" })
+    }
+
+    const payment = await prisma.payment.create({
+        data: {
+            description: body.payment                       
+        }
+    })
+    return response.status(201).json("Salvo com sucesso!")
+})
+
+//Rota Users
+app.get('/users', async (req, res) => {
+    const users = await prisma.users.findMany()
+
+    return res.json(users)
+})
+
+app.post('/users', async (request, response) => {   
+    const body = request.body;
+
+    const users = await prisma.users.create({
+        data: {
+            email: body.email,
+            password: body.password,
+            role: body.role          
+        }
+    })
+    return response.status(201).json("Salvo com sucesso!")
 })
 
 app.listen(3333)

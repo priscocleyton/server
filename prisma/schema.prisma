@@ -18,12 +18,48 @@ model Game {
   ads Ad[]
 }
 
+//TABELA DO PRISCO
 model Transaction {
   id          String @id @default(uuid())
   descricao   String
   saldo       String
   tipo        String
   dataCriacao String
+}
+
+
+// TABELA DO HENRIQUE
+
+//TABELAS DO MY MANAGER MONEY
+
+model RevenuesTable{
+  id String @id @default(uuid())
+  categoryOfRevenue String
+  bills String
+}
+
+model Banks{
+  id String @id @default(uuid())
+  bank String 
+}
+
+
+model ExpensesTable{
+  id String @id @default(uuid())
+  categoryOfExpenses String
+  bills String
+}
+
+model TransactionsTable{
+  id String @id @default(uuid())
+  type String
+  date String
+  category String
+  bills String
+  payment String
+  bank String
+  value String
+  history String
 }
 
 model Ad {
@@ -40,3 +76,16 @@ model Ad {
 
   game Game @relation(fields: [gameId], references: [id])
 }
+
+model Payment {
+  id String @id @default(uuid())
+  description String 
+}
+
+model Users {
+  id String @id @default(uuid())
+  email String
+  password String
+  role String
+}
+
